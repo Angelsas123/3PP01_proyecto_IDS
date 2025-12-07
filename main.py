@@ -41,6 +41,26 @@ def mostrar():
         print(f"Fecha de Caducidad: {prod['fecha_caducidad']}")
     
     print(f"\nTotal de productos: {len(productos)}")
+
+# funcion por Danny
+def borrar():
+    print("borrar")
+    print("borrar producto")
+
+    if len(productos) == 0:
+        print("No hay productos para borrar.")
+        return
+    
+    id_borrar = input("Ingrese el ID del producto a borrar: ")
+    
+    # Borrar producto por ID
+    for i, prod in enumerate(productos):
+        if prod['id'] == id_borrar:
+            del productos[i]
+            print(f"✓ Producto con ID {id_borrar} borrado exitosamente.")
+            return
+        else:
+            print("✗ Producto no encontrado.")
   
 # Función por Pavel
 def modificar():
@@ -82,11 +102,19 @@ def modificar():
 
 def ordenar():
     print("ORDENAR")
+    print("ordenar productos por ID")
 
-def borrar():
-    print("BORRAR")
-
-
+    if len(productos) == 0:
+        print("No hay productos para ordenar.")
+        return
+    
+    # usamos metodo burbuja
+    for i in range(len(productos)-1):
+        for j in range(len(productos)-1-i):
+            if productos[j]['id'] > productos[j+1]['id']:
+                # intercambiar productos
+                productos[j],productos[j+1] = productos[j+1],productos[j]
+    print("✓ Productos ordenados por ID exitosamente.")
 
 opc = 1 # variable de control de opciones
 
