@@ -42,9 +42,43 @@ def mostrar():
     
     print(f"\nTotal de productos: {len(productos)}")
   
-
+# Función por Pavel
 def modificar():
     print("MODIFICAR")
+    if len(productos) == 0:
+        print("No hay productos registrados.")
+        return
+    
+    id_buscar = input("Ingrese el ID del producto a modificar: ")
+    
+    for prod in productos:
+        if prod['id'] == id_buscar:
+            print("\nProducto encontrado. Deje vacío cualquier campo para NO modificarlo.\n")
+            
+            nuevo_nombre = input(f"Nombre ({prod['nombre']}): ")
+            nuevo_precio = input(f"Precio ({prod['precio']}): ")
+            nueva_desc = input(f"Descripción ({prod['descripcion']}): ")
+            nuevo_lote = input(f"Lote ({prod['lote']}): ")
+            nueva_fecha = input(f"Fecha de Caducidad ({prod['fecha_caducidad']}): ")
+            
+            if nuevo_nombre != "":
+                prod['nombre'] = nuevo_nombre
+            if nuevo_precio != "":
+                try:
+                    prod['precio'] = float(nuevo_precio)
+                except:
+                    print("Precio inválido. Se mantiene el valor anterior.")
+            if nueva_desc != "":
+                prod['descripcion'] = nueva_desc
+            if nuevo_lote != "":
+                prod['lote'] = nuevo_lote
+            if nueva_fecha != "":
+                prod['fecha_caducidad'] = nueva_fecha
+            
+            print("\nProducto modificado exitosamente!")
+            return
+
+    print("No se encontró un producto con ese ID.")
 
 def ordenar():
     print("ORDENAR")
