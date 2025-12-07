@@ -4,8 +4,23 @@ productos = []
 def ingresar():
     print("===== INGRESAR PRODUCTO =====")
     id_producto = input("ID del producto: ")
+
+    # Agregado por javier valida id duplicado
+    for p in productos:
+        if p['id'] == id_producto:
+            print("¡Error! Ese ID ya existe.")
+            return
+
     nombre = input("Nombre: ")
-    precio = float(input("Precio: "))
+
+    # Agregado por javier evita que el programa falle si no es número
+    while True:
+        try:
+            precio = float(input("Precio: "))
+            break
+        except ValueError:
+            print("Error: Por favor ingrese un número válido para el precio.")
+
     descripcion = input("Descripción: ")
     lote = input("Lote: ")
     fecha_caducidad = input("Fecha de Caducidad (DD/MM/AAAA): ")
@@ -42,7 +57,7 @@ def mostrar():
     
     print(f"\nTotal de productos: {len(productos)}")
 
-# funcion por Danny
+# funcion por Danny  
 def borrar():
     print("borrar")
     print("borrar producto")
@@ -59,8 +74,8 @@ def borrar():
             del productos[i]
             print(f"✓ Producto con ID {id_borrar} borrado exitosamente.")
             return
-        else:
-            print("✗ Producto no encontrado.")
+       
+    print("✗ Producto no encontrado.")  # correccion por javier
   
 # Función por Pavel
 def modificar():
