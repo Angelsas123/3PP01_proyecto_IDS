@@ -14,6 +14,8 @@ El sistema cuenta *(por ahora)* con las siguientes funcionalidades:
 * **Modificar Productos:** Edición selectiva de campos (puedes editar solo el precio y dejar el resto igual).
 * **Ordenar:** Ordenamiento de productos por ID utilizando el método de burbuja.
 * **Borrar:** Eliminación de productos por su ID.
+* **Buscar:** Busca productos por coincidencia en el nombre
+
 * **
 * ***Persistencia:*** Los datos se mantienen en memoria durante la ejecución (Listas y Objetos).
 
