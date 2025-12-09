@@ -1,54 +1,92 @@
 import os
 from modelos import Item, productos
 
+def clear():
+    os.system("cls" if os.name == "nt" else "clear")
+
+
 def filtrado():
-    print("Función filtrado en Rubros.py")
+    clear()
+    print("|====================|")
+    print("=== FILTRAR POR PRECIO ===")
+
+    # Validación de entrada
+    try:
+        min_precio = float(input("Ingrese el precio mínimo: "))
+        max_precio = float(input("Ingrese el precio máximo: "))
+    except ValueError:
+        print("\nERROR: Debes ingresar valores numéricos.")
+        input("Presiona Enter para volver...")
+        return
+    
+    print(f"\nBuscando productos entre ${min_precio} y ${max_precio}...\n")
+
+    # Validación: productos existente
+    if not productos:
+        print("No hay productos cargados para filtrar.")
+        input("\nPresiona Enter para continuar...")
+        return
+
+    # Filtrado
+    encontrados = [p for p in productos if min_precio <= p.precio <= max_precio]
+
+    # Resultados
+    if encontrados:
+        print(f"--> Se encontraron {len(encontrados)} coincidencias:\n")
+        for item in encontrados:
+            # Si Item no tiene __str__, imprimo manual
+            try:
+                print(item)
+            except:
+                print(f"{item.nombre} - ${item.precio}")
+    else:
+        print("--> No hay productos en ese rango de precios.")
+
+    input("\nPresiona Enter para continuar...")
+
 
 def ordenar():
     print("Función ordenar en Rubros.py")
 
+
 def borrar():
     print("Función borrar en Rubros.py")
 
-def clear():
-    return os.system("cls" if os.name == "nt" else "clear")
 
 def Rubros_menu():
-    opc = 1 # variable de control de opciones
-
+    opc = 1
     clear()
-    while opc!=0: #menú copiado de orion y adaptado a rubros por simmel
-        print("|====================|")
-        print("===== MENU =====\
-              \n1. Filtrado\
-              \n2. Ordenar\
-              \n3. borrar\
-              \n0. Salir")
-        
-        try:
-            opc = int(input(" \n    --> "))
 
+    while opc != 0:
+        print("|====================|")
+        print("===== MENU =====")
+        print("1. Filtrado")
+        print("2. Ordenar")
+        print("3. Borrar")
+        print("0. Salir")
+
+        try:
+            opc = int(input("\n--> "))
         except ValueError:
             clear()
-            print("|====================|\n")
-            print("ERROR! Tipo de dato incorrecto. Inténtalo de nuevo.\n")
-
-        else:
             print("|====================|")
-            print(f"-----> OPCIÓN {opc} <-----")
+            print("ERROR: Debes ingresar un número.\n")
+            continue
 
-            match opc:
-                case 1:
-                    filtrado()
+        clear()
+        print("|====================|")
+        print(f"-----> OPCIÓN {opc} <-----\n")
 
-                case 2:
-                    ordenar()
+        match opc:
+            case 1:
+                filtrado()
+            case 2:
+                ordenar()
+            case 3:
+                borrar()
+            case 0:
+                print("-----> SALIENDO <-----")
+            case _:
+                print("-----> OPCIÓN NO DISPONIBLE <-----")
 
-                case 3:
-                    borrar()
 
-                case 0:
-                    print("-----> SALIENDO <-----")
-
-                case _:
-                    print("-----> OPCION NO DISPONIBLE <-----")
