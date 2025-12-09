@@ -14,7 +14,7 @@ def filtrar_por_precio():
         min_precio = float(input("Ingrese el precio mínimo: "))
         max_precio = float(input("Ingrese el precio máximo: "))
     except ValueError:
-        print("\nERROR: Debes ingresar valores numéricos. 😔")
+        print("\nERROR: Debes ingresar valores numéricos.")
         input("Presiona Enter para volver...")
         return
     
@@ -22,33 +22,28 @@ def filtrar_por_precio():
 
     # Validación: productos existente
     if not productos:
-        print("No hay productos cargados para filtrar. 😥")
+        print("No hay productos cargados para filtrar.")
         input("\nPresiona Enter para continuar...")
         return
 
-    # Filtrado por compresión de lista (¡Muy eficiente! 😉)
     encontrados = [p for p in productos if min_precio <= p.precio <= max_precio]
     if encontrados:
-        print(f"✅ Se encontraron {len(encontrados)} coincidencias:\n")
+        print(f"Se encontraron {len(encontrados)} coincidencias:\n")
         for item in encontrados:
             try:
-                # Intenta usar la representación __str__ de la clase Item
                 print(item) 
             except:
-                # Si falla por alguna razón, usa un formato simple
                 print(f"{item.nombre} - ${item.precio}")
     else:
-        print("❌ No hay productos en ese rango de precios.")
+        print("No hay productos en ese rango de precios.")
 
     input("\nPresiona Enter para continuar...")
 
 def filtrar_por_id():
-    # Esta es para tu equipo
     print("Función para filtrar por ID (Pendiente)")
     input("\nPresiona Enter para continuar...")
 
 def filtrar_por_fecha():
-    # Esta es para tu equipo
     print("Función para filtrar por Fecha de Caducidad (Pendiente)")
     input("\nPresiona Enter para continuar...")
 
@@ -59,17 +54,17 @@ def filtrado():
     while opc != 0:
         print("|====================|")
         print("===== MENÚ FILTRADO =====")
-        print("1. Por Precio 💰")
-        print("2. Por ID de Producto #️⃣")
-        print("3. Por Fecha de Caducidad 🗓️")
-        print("0. Volver al Menú Principal 🔙")
+        print("1. Por Precio")
+        print("2. Por ID de Producto")
+        print("3. Por Fecha de Caducidad")
+        print("0. Volver al Menú Principal")
 
         try:
             opc = int(input("\n--> Selecciona una opción: "))
         except ValueError:
             clear()
             print("|====================|")
-            print("ERROR: Debes ingresar un número. 😅\n")
+            print("ERROR: Debes ingresar un número.\n")
             continue
 
         clear()
@@ -78,11 +73,11 @@ def filtrado():
 
         match opc:
             case 1:
-                filtrar_por_precio() # Llama a la función que acabamos de usar
+                filtrar_por_precio()
             case 2:
-                filtrar_por_id() # Pendiente por tu equipo
+                filtrar_por_id()
             case 3:
-                filtrar_por_fecha() # Pendiente por tu equipo
+                filtrar_por_fecha()
             case 0:
                 print("-----> VOLVIENDO AL MENÚ PRINCIPAL <-----")
             case _:
