@@ -31,7 +31,7 @@ def borrar_por_rubro_logic(productos, opcion, valor_str):
 
 
 # ---------- Parte 3: Datos, estructura y utilidades generales ----------
-# --- Responsable: Integrante C ---
+# --- Responsable: ulloa ---
 
 from dataclasses import dataclass
 
